@@ -1,0 +1,23 @@
+version: '3.7'
+
+services:
+  cinema-system-postgresql:
+    restart: always
+    image: postgres:12.2
+    env_file:
+      - .env
+    ports:
+      - ${POSTGRES_PORT}:5432
+
+  backend:
+    restart: always
+    env_file:
+      - .env
+    build:
+      dockerfile: Dockerfile
+    ports:
+      - 8000:8000
+    depends_on:
+      - cinema-system-postgresql
+    volumes:
+      - .:/opt/project:delegated

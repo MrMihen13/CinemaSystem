@@ -21,24 +21,37 @@ class Country(models.Model):
         return self.name
 
 
-class Producer(models.Model):
+class Person(models.Model):
     first_name = models.CharField(max_length=128, verbose_name='First Name', blank=False, null=False)
     last_name = models.CharField(max_length=128, verbose_name='Last Name', blank=False, null=False)
-    middle_name = models.CharField(max_length=128, verbose_name='Middle Name', blank=False, null=False)
+    middle_name = models.CharField(max_length=128, verbose_name='Middle Name', blank=True, null=True)
     country = models.ManyToManyField(Country, verbose_name='Country', default=None)
     language = models.ManyToManyField(Language, verbose_name='Language', default=None)
 
+    class Meta:
+        abstract = True
 
-class Director(Producer):
+    def __str__(self):
+        return f'{self.first_name} {self.last_name}'
+
+
+class Producer(Person):
     ...
 
 
-class Actor(Producer):
+class Director(Person):
+    ...
+
+
+class Actor(Person):
     ...
 
 
 class Genre(models.Model):
     name = models.CharField(max_length=128, verbose_name='Name', blank=False, null=False)
+
+    def __str__(self):
+        return self.name
 
 
 class Movie(models.Model):
@@ -51,9 +64,13 @@ class Movie(models.Model):
     )
     actor = models.ManyToManyField(Actor, verbose_name='Actor', default=None)
     director = models.ForeignKey(Director, verbose_name='Director', blank=False, null=False, on_delete=models.CASCADE)
+    producer = models.ForeignKey(Producer, verbose_name='Producer', blank=False, null=False, on_delete=models.CASCADE)
 
     country = models.ManyToManyField(Country, verbose_name='Country', default=None)
     language = models.ManyToManyField(Language, verbose_name='Language', default=None)
+
+    def __str__(self):
+        return self.name
 
 
 class FavoriteMovie(models.Model):
