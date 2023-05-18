@@ -14,7 +14,9 @@ class Cinema(models.Model):
 class Hall(models.Model):
     number = models.PositiveIntegerField(verbose_name='Hall number')
     cinema = models.ForeignKey(Cinema, on_delete=models.CASCADE)
-    places = models.PositiveIntegerField(verbose_name='Places count')
+
+    rows_count = models.PositiveIntegerField(verbose_name='Rows count')
+    seats_count = models.PositiveIntegerField(verbose_name='Seats count')
 
     def __str__(self):
         return f'{self.cinema} {self.number}'

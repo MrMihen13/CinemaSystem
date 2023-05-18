@@ -23,7 +23,7 @@ class DirectorSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Director
-        fields = ('id', 'first_name', 'last_name', 'middle_name', 'country', 'language')
+        fields = ('id', 'first_name', 'last_name', 'middle_name', 'country', 'language', 'photo')
 
 
 class ActorSerializer(serializers.ModelSerializer):
@@ -32,7 +32,7 @@ class ActorSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Actor
-        fields = ('id', 'first_name', 'last_name', 'middle_name', 'country', 'language')
+        fields = ('id', 'first_name', 'last_name', 'middle_name', 'country', 'language', 'photo')
 
 
 class ProducerSerializer(serializers.ModelSerializer):
@@ -41,7 +41,7 @@ class ProducerSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Director
-        fields = ('id', 'first_name', 'last_name', 'middle_name', 'country', 'language')
+        fields = ('id', 'first_name', 'last_name', 'middle_name', 'country', 'language', 'photo')
 
 
 class GenreSerializers(serializers.ModelSerializer):
@@ -69,6 +69,7 @@ class MovieSerializers(serializers.ModelSerializer):
         fields = (
             'id',
             'name',
+            'poster',
             'release_date',
             'rating',
             'duration',

@@ -5,6 +5,14 @@ from django.contrib.auth import get_user_model
 USER = get_user_model()
 
 
+def poster_upload_to(instance, filename: str) -> str:
+    return f'movie_{instance.id}/{filename}'
+
+
+def person_upload_to(instance, filename: str) -> str:
+    return f'person_{instance.id}/{filename}'
+
+
 class Language(models.Model):
     name = models.CharField(max_length=128, verbose_name='Name', blank=False, null=False)
     code = models.CharField(max_length=3, verbose_name='Code', blank=False, null=False)
@@ -22,6 +30,7 @@ class Country(models.Model):
 
 
 class Person(models.Model):
+    photo = models.ImageField(upload_to=person_upload_to, verbose_name='Photo', blank=True, null=True)
     first_name = models.CharField(max_length=128, verbose_name='First Name', blank=False, null=False)
     last_name = models.CharField(max_length=128, verbose_name='Last Name', blank=False, null=False)
     middle_name = models.CharField(max_length=128, verbose_name='Middle Name', blank=True, null=True)
@@ -57,6 +66,7 @@ class Genre(models.Model):
 class Movie(models.Model):
     name = models.CharField(max_length=128, verbose_name='Name', blank=False, null=False)
     genre = models.ManyToManyField(Genre, verbose_name='Genre', blank=False)
+    poster = models.ImageField(upload_to=poster_upload_to, verbose_name='Poster', blank=True, null=True)
     release_date = models.DateField(verbose_name='Release Date', blank=False, null=False)
     rating = models.DecimalField(max_digits=2, decimal_places=1, verbose_name='Rating', blank=False, null=False)
     duration = models.PositiveIntegerField(

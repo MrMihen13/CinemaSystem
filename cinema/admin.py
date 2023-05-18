@@ -10,5 +10,5 @@ class CinemaAdmin(admin.ModelAdmin):
 
 @admin.register(models.Hall)
 class HallAdmin(admin.ModelAdmin):
-    list_display = ('number', 'cinema', 'places')
-    list_filter = ('cinema', 'places')
+    list_display = ('number', 'cinema', 'rows_count', 'seats_count')
+    list_filter = ('cinema', 'rows_count', 'seats_count')

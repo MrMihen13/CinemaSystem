@@ -11,3 +11,5 @@ class Ticket(models.Model):
     user = models.ForeignKey(USER, verbose_name='User', on_delete=models.CASCADE)
     session = models.ForeignKey(session_models.Session, verbose_name='Session', on_delete=models.CASCADE)
     price = models.ForeignKey(session_models.PriceList, verbose_name='Price', on_delete=models.CASCADE)
+    row = models.PositiveIntegerField(verbose_name='Row')
+    seat = models.PositiveIntegerField(verbose_name='Seat')
