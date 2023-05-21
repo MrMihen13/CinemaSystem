@@ -11,7 +11,7 @@ class ListSessionAPIView(generics.ListAPIView):
     permission_classes = (permissions.AllowAny,)
     serializer_class = SessionSerializer
     filter_backends = [SessionFilter, ]
-    filterset_fields = ['datetime_from', 'datetime_to', 'price_from', 'price_to']
+    filterset_fields = ['datetime_from', 'datetime_to', 'price_from', 'price_to', 'move_id', 'cinema_id']
     queryset = Session.objects.all()
 
     def list(self, request, *args, **kwargs):
