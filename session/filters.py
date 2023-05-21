@@ -38,8 +38,9 @@ class SessionFilter(BaseInFilter):
             datetime_to=request.GET.get('datetime_to')
         )
         session = self.__filtering_session_by_price(
-            session=session, price_from=request.data.get('price_from'),
-            price_to=request.data.get('price_to')
+            session=session,
+            price_from=request.GET.get('price_from'),
+            price_to=request.GET.get('price_to')
         )
         return session
 
