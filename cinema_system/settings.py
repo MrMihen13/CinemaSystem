@@ -141,7 +141,7 @@ LOGGING = {
     'formatters': {
         'simple': {
             'format': '{name}:{levelname}:{message}',
-            'style': '{',
+            'style': '',
         }
     },
     'handlers': {
@@ -164,7 +164,7 @@ REST_FRAMEWORK = {
     'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.NamespaceVersioning',
 
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',
+        'rest_framework.permissions.AllowAny',
     ],
 
     'DEFAULT_AUTHENTICATION_CLASSES': [

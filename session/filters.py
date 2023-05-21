@@ -41,9 +41,7 @@ class SessionFilter(BaseInFilter):
             return session.filter(cinema__id=cinema_id)
         return session
 
-    def filter_queryset(self, request, queryset, view):
-        session = queryset
-
+    def filter_queryset(self, request, session, view):
         session = self.__filtering_by_date(
             session=session,
             datetime_from=request.GET.get('datetime_from'),
