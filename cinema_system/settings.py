@@ -141,7 +141,7 @@ LOGGING = {
     'formatters': {
         'simple': {
             'format': '{name}:{levelname}:{message}',
-            'style': '',
+            'style': '{',
         }
     },
     'handlers': {
