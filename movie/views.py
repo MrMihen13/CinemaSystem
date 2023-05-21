@@ -4,23 +4,27 @@ from movie import models, serializers
 
 from movie.filters import MovieFilter
 
+
 class GenreListAPIView(generics.ListAPIView):
-    permission_classes = (permissions.AllowAny, )
+    permission_classes = (permissions.AllowAny,)
     serializer_class = serializers.GenreSerializers
     queryset = models.Genre.objects.all()
 
+
 class MovieRetrieveAPIView(generics.RetrieveAPIView):
-    permission_classes = (permissions.AllowAny, )
+    permission_classes = (permissions.AllowAny,)
     serializer_class = serializers.MovieSerializers
     queryset = models.Movie.objects.all()
 
+
 class PopularMovieListAPIView(generics.ListAPIView):
-    permission_classes = (permissions.AllowAny, )
+    permission_classes = (permissions.AllowAny,)
     serializer_class = serializers.MovieSerializers
     queryset = models.Movie.objects.order_by('-rating')[:10]
 
+
 class MoviesListAPIView(generics.ListAPIView):
-    permission_classes = (permissions.AllowAny, )
+    permission_classes = (permissions.AllowAny,)
     serializer_class = serializers.MovieSerializers
     filter_backends = [MovieFilter, filters.SearchFilter]
     search_fields = ['name']
