@@ -19,3 +19,6 @@ class Session(models.Model):
     movie = models.ForeignKey(movie_models.Movie, verbose_name='Movie', on_delete=models.CASCADE)
     start_time = models.DateTimeField(verbose_name='Start time', blank=False, null=False)
     price = models.ManyToManyField(PriceList, verbose_name='Price')
+
+    def __str__(self):
+        return f'Session {self.pk} - {self.movie.name}'
