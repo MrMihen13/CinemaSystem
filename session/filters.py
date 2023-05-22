@@ -52,7 +52,7 @@ class SessionFilter(BaseInFilter):
             price_from=request.GET.get('price_from'),
             price_to=request.GET.get('price_to')
         )
-        session = self.__filtering_by_movie(session=session, move_id=request.GET.get('move_id'))
+        session = self.__filtering_by_movie(session=session, move_id=request.GET.get('movie_id'))
         session = self.__filtering_by_cinema(session=session, cinema_id=request.GET.get('cinema_id'))
 
         return session
