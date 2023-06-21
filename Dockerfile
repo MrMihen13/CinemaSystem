@@ -22,6 +22,10 @@ RUN python manage.py collectstatic --noinput
 
 RUN groupadd --gid 1001 app \
   && useradd --uid 1001 --gid app --shell /bin/bash app
+
+RUN chgrp -R app /app
+RUN chmod -R 770 /app
+
 USER app
 
 CMD ["/app/entrypoint.sh"]
